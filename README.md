@@ -18,3 +18,5 @@ samples, guidance on mobile development, and a full API reference.
 Members:
 Hafizhan Yusra Sulistyo: 5026231060
 Zeldano Shan Oeffie: 5026231118
+
+Emerging Technology Final Project - Tic Tac Toe
