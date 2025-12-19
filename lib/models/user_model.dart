@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
   final String uid;
   final String email;
@@ -32,6 +34,21 @@ class UserModel {
 
   /// Create from Firestore document
   factory UserModel.fromMap(Map<String, dynamic> map) {
+    // Handle createdAt - can be Timestamp from Firestore or String
+    DateTime createdAtDate;
+    final createdAtValue = map['createdAt'];
+    
+    if (createdAtValue is Timestamp) {
+      // Firestore Timestamp
+      createdAtDate = createdAtValue.toDate();
+    } else if (createdAtValue is String) {
+      // ISO String format
+      createdAtDate = DateTime.parse(createdAtValue);
+    } else {
+      // Fallback to current time
+      createdAtDate = DateTime.now();
+    }
+
     return UserModel(
       uid: map['uid'] as String,
       email: map['email'] as String,
@@ -39,7 +56,7 @@ class UserModel {
       totalGamesPlayed: map['totalGamesPlayed'] as int? ?? 0,
       totalWins: map['totalWins'] as int? ?? 0,
       highestScore: map['highestScore'] as int? ?? 0,
-      createdAt: DateTime.parse(map['createdAt'] as String),
+      createdAt: createdAtDate,
     );
   }
 

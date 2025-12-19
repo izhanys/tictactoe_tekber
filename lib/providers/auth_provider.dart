@@ -73,6 +73,16 @@ class AuthNotifier extends StateNotifier<AsyncValue<UserModel?>> {
       return false;
     }
   }
+
+  /// Refresh user data from Firebase (call after game saves)
+  Future<void> refreshUser() async {
+    try {
+      final user = await _authService.getCurrentUser();
+      state = AsyncValue.data(user);
+    } catch (e, st) {
+      state = AsyncValue.error(e, st);
+    }
+  }
 }
 
 final authProvider = StateNotifierProvider<AuthNotifier, AsyncValue<UserModel?>>((ref) {
