@@ -15,7 +15,7 @@ class ProfileScreenPlaceholder extends ConsumerWidget {
         title: const Text('Profile'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.go('/game'),
+          onPressed: () => context.go('/menu'),
         ),
       ),
       body: Center(

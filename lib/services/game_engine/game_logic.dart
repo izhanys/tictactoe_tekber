@@ -1,6 +1,8 @@
 /// Tic Tac Toe Game Logic
 /// Handles board state, win detection, and move validation
 
+import 'package:tictactoe_fp_tekber/services/audio_service.dart';
+
 class GameLogic {
   /// 3x3 board represented as List<List<String>>
   /// Empty = '', Player = 'X', AI = 'O'
@@ -14,6 +16,9 @@ class GameLogic {
 
   /// Whether the game is over
   bool isGameOver = false;
+
+  /// Audio service for sound effects
+  final AudioService _audioService = AudioService();
 
   /// Initialize/Reset the board
   GameLogic() {
@@ -45,6 +50,9 @@ class GameLogic {
   bool makeMove(int row, int col, String player) {
     if (!isValidMove(row, col)) return false;
 
+    // Play tap sound on move
+    _audioService.playSound('tap');
+
     board[row][col] = player;
 
     // Check for winner after move
@@ -52,8 +60,16 @@ class GameLogic {
     if (gameWinner != null) {
       winner = gameWinner;
       isGameOver = true;
+      
+      // Play win/lose sound
+      if (gameWinner == 'X') {
+        _audioService.playSound('win');  // Player won
+      } else {
+        _audioService.playSound('lose'); // AI won
+      }
     } else if (isBoardFull()) {
       isGameOver = true;
+      // Draw condition - no sound (draw.mp3 doesn't exist)
     }
 
     // Switch player
