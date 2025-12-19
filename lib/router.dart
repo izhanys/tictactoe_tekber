@@ -7,11 +7,12 @@ import 'package:tictactoe_fp_tekber/screens/auth/register_screen.dart';
 import 'package:tictactoe_fp_tekber/screens/game/game_screen_placeholder.dart';
 import 'package:tictactoe_fp_tekber/screens/leaderboard/leaderboard_screen_placeholder.dart';
 import 'package:tictactoe_fp_tekber/screens/profile/profile_screen_placeholder.dart';
+import 'package:tictactoe_fp_tekber/screens/menu/menu_screen.dart';
 
 /// Create GoRouter with authentication guard
 GoRouter createRouter(bool isAuthenticated) {
   return GoRouter(
-    initialLocation: isAuthenticated ? '/game' : '/login',
+    initialLocation: isAuthenticated ? '/menu' : '/login',
     redirect: (context, state) {
       final loggingIn = state.matchedLocation == '/login' || state.matchedLocation == '/register';
 
@@ -20,9 +21,9 @@ GoRouter createRouter(bool isAuthenticated) {
         return '/login';
       }
 
-      // If authenticated and on login/register, redirect to game
+      // If authenticated and on login/register, redirect to menu
       if (isAuthenticated && loggingIn) {
-        return '/game';
+        return '/menu';
       }
 
       // No redirect needed
@@ -40,6 +41,10 @@ GoRouter createRouter(bool isAuthenticated) {
       ),
 
       // Main app routes
+      GoRoute(
+        path: '/menu',
+        builder: (context, state) => const MenuScreen(),
+      ),
       GoRoute(
         path: '/game',
         builder: (context, state) => const GameScreenPlaceholder(),
