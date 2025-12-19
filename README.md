@@ -1,22 +1,17 @@
 # Tic Tac Toe - Flutter Application
 
-## 📱 Project Overview
+## Project Overview
 
 A modern Flutter-based Tic Tac Toe game application with Firebase authentication, real-time leaderboard, AI opponent, and sound effects. The application features user registration/login, game mechanics with AI difficulty levels, and persistent game statistics.
 
 ---
 
-## 👥 Team Members
+## Team Members
 
 | No. | Name | Student ID | Role | Responsibilities |
 |-----|------|-----------|------|------------------|
 | 1 | **Hafizhan Yusra Sulistyo** | 5026231060 | **Authentication & Navigation** | User registration/login, authentication flows, app routing, UI/UX setup |
 | 2 | **Zeldano Shan Oeffie** | 5026231118 | **Game Logic & AI** | Game engine, AI algorithms, game state management, game provider |
-
-**Course:** Emerging Technology (Final Project)  
-**Submission Deadline:** December 19, 2025, 23:55 WIB
-
----
 
 ## 🏗️ Project Structure & File Description
 
